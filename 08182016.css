@@ -3,17 +3,30 @@ body{
 
 
   width: 100%;
+<<<<<<< HEAD
 }
 .hidelabel{
   display: none;
 }
+=======
+  height: 100%
+}
+.hidelabel{
+  display: none;
+}
+
+>>>>>>> af58814abeb6cbdac059cabad02b637bbea7236f
 div{
   position: relative;
 }
 #searcharea{
   margin-top: 5%;
 margin-bottom: 10%;
+<<<<<<< HEAD
 height: 30px;
+=======
+width: 100%;
+>>>>>>> af58814abeb6cbdac059cabad02b637bbea7236f
 
 }
 h1{
@@ -32,6 +45,7 @@ float: left;
 
 }
 
+<<<<<<< HEAD
 #button:hover{
   background-color: #333;
   color: white;
@@ -39,17 +53,28 @@ float: left;
   float: left;
 
 }
+=======
+
+>>>>>>> af58814abeb6cbdac059cabad02b637bbea7236f
 span{
   background-color: green;
   height: 25px;
   width: 25px;
 opacity: .6;
+<<<<<<< HEAD
   display: none;
+=======
+  display: inline-block;
+>>>>>>> af58814abeb6cbdac059cabad02b637bbea7236f
 }
 #error{
   background-color: transparent;;
   color: red;
+<<<<<<< HEAD
 display: block;
+=======
+
+>>>>>>> af58814abeb6cbdac059cabad02b637bbea7236f
 }
 li{
 position: relative;
@@ -59,11 +84,16 @@ position: relative;
   margin: 10px 0;
   padding: 10px;
   width: 100%;
+<<<<<<< HEAD
 word-wrap: break-word;
+=======
+
+>>>>>>> af58814abeb6cbdac059cabad02b637bbea7236f
 font-family: "lato",sans-serif;
 font-weight: 300;
 }
 section{
+<<<<<<< HEAD
   position: relative;
   height: 500px;
   overflow-y: scroll;
@@ -73,4 +103,35 @@ section{
 
 text-decoration: line-through;
 
+=======
+
+padding: 0px;
+  overflow-y: scroll;
+  height: 500px;
+word-wrap: break-word;
+margin: 0;
+
+
+}
+
+@media screen and (min-width:300px) and (max-width:800px) {
+
+  #search{
+
+  height: 5em;
+  font-size: 1.3em;
+
+  }
+
+  li{
+width: 100%;
+  height:5em;
+  }
+  section{
+    height:33em;
+  }
+}
+#notecontainer{width: 100%;}::-webkit-scrollbar {
+    display: none;
+>>>>>>> af58814abeb6cbdac059cabad02b637bbea7236f
 }

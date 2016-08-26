@@ -4,7 +4,11 @@ $(document).ready(function() {
   if (notes) {
 
     $.each(notes, function() {
+<<<<<<< HEAD
       $('<li class="note col-md-4 col-md-offset-4 col-xs-10 col-xs-offset-1">')
+=======
+      $('<li class="col-md-4 col-md-offset-4 col-xs-12">')
+>>>>>>> af58814abeb6cbdac059cabad02b637bbea7236f
           .text(this)
           .appendTo('#notecontainer>ul')
     });
@@ -14,6 +18,7 @@ $(document).ready(function() {
   $('#search').focus(function() {
     $(this).keypress(function(e) {
       if (e.keyCode === 13) {
+<<<<<<< HEAD
         if ($('#search').val().length > 0) {
           console.log("you pressed enter")
               //
@@ -22,25 +27,46 @@ $(document).ready(function() {
           console.log(val)
           $('input#search').val('');
           $('<li class="note col-md-4 col-md-offset-4 col-xs-10 col-xs-offset-1">')
+=======
+        if ($('textarea#search').val().trim().length > 1) {
+          console.log("you pressed enter")
+
+              var val = $('textarea#search').val().trim();
+          console.log(val)
+
+          $('<li class="col-md-4 col-md-offset-4 col">')
+>>>>>>> af58814abeb6cbdac059cabad02b637bbea7236f
               .text(val)
               .appendTo('section#notecontainer>ul');
           notes = query();
           save('mynotes', notes, true);
           $('html,section').animate({scrollTop : $(document).height()}, 1100);
           console.log(localStorage);
+<<<<<<< HEAD
 
         } else {
           $('#search').attr('placeholder',
                             'Please input values before pressing enter')
+=======
+            $('#search').val(null);
+
+        } else {
+          $('#search').attr('placeholder','Please input values before pressing enter')
+>>>>>>> af58814abeb6cbdac059cabad02b637bbea7236f
           console.warn("please input value");
         }
       } else {
         $('span').toggle().fadeIn(1000);
+<<<<<<< HEAD
         console.log($('#search').val().length);
+=======
+        console.log($('#search').val().trim().length);
+>>>>>>> af58814abeb6cbdac059cabad02b637bbea7236f
       }
     })
   })
 
+<<<<<<< HEAD
   $(".note").click(function() {
 
     $(this).toggleClass("line-through");
@@ -51,6 +77,14 @@ $(document).ready(function() {
     return $.map($('section#notecontainer>ul:first-of-type').children(),
                  function(li) { return $(li).text(); });
   };
+=======
+      function
+      query() {
+
+        return $.map($('section#notecontainer>ul:first-of-type').children(),
+                     function(li) { return $(li).text(); });
+      };
+>>>>>>> af58814abeb6cbdac059cabad02b637bbea7236f
   function load(key) {
 
     var loaded;
