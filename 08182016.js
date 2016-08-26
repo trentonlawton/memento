@@ -4,7 +4,7 @@ $(document).ready(function() {
   if (notes) {
 
     $.each(notes, function() {
-      $('<li class="col-md-4 col-md-offset-4 col-xs-12">')
+      $('<li class="note col-md-4 col-md-offset-4 col-xs-12">')
           .text(this)
           .appendTo('#notecontainer>ul')
     });
@@ -20,7 +20,7 @@ $(document).ready(function() {
               var val = $('textarea#search').val().trim();
           console.log(val)
 
-          $('<li class="col-md-4 col-md-offset-4 col">')
+          $('<li class="note col-md-4 col-md-offset-4 col">')
               .text(val)
               .appendTo('section#notecontainer>ul');
           notes = query();
@@ -41,12 +41,17 @@ $(document).ready(function() {
     })
   })
 
-      function
-      query() {
+  $(".note").click(function() {
 
-        return $.map($('section#notecontainer>ul:first-of-type').children(),
-                     function(li) { return $(li).text(); });
-      };
+    $(this).toggleClass("strike");
+
+  });
+
+  function query() {
+
+    return $.map($('section#notecontainer>ul:first-of-type').children(),
+                 function(li) { return $(li).text(); });
+  };
   function load(key) {
 
     var loaded;

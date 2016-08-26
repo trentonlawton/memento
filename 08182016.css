@@ -90,3 +90,7 @@ width: 100%;
 #notecontainer{width: 100%;}::-webkit-scrollbar {
     display: none;
 }
+.strike{
+
+  text-decoration: line-through;
+}
