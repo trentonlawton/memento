@@ -4,7 +4,7 @@ $(document).ready(function() {
   if (notes) {
 
     $.each(notes, function() {
-      $('<li class="col-md-4 col-md-offset-4 col-xs-10 col-xs-offset-1">')
+      $('<li class="note col-md-4 col-md-offset-4 col-xs-10 col-xs-offset-1">')
           .text(this)
           .appendTo('#notecontainer>ul')
     });
@@ -21,7 +21,7 @@ $(document).ready(function() {
               var val = $('#search').val();
           console.log(val)
           $('input#search').val('');
-          $('<li class="col-md-4 col-md-offset-4 col-xs-10 col-xs-offset-1">')
+          $('<li class="note col-md-4 col-md-offset-4 col-xs-10 col-xs-offset-1">')
               .text(val)
               .appendTo('section#notecontainer>ul');
           notes = query();
@@ -41,12 +41,16 @@ $(document).ready(function() {
     })
   })
 
-      function
-      query() {
+  $(".note").click(function() {
 
-        return $.map($('section#notecontainer>ul:first-of-type').children(),
-                     function(li) { return $(li).text(); });
-      };
+    $(this).toggleClass("line-through");
+
+  });
+  function query() {
+
+    return $.map($('section#notecontainer>ul:first-of-type').children(),
+                 function(li) { return $(li).text(); });
+  };
   function load(key) {
 
     var loaded;

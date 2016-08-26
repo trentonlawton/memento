@@ -69,4 +69,8 @@ section{
   overflow-y: scroll;
 
 }
-.
+.line-through{
+
+text-decoration: line-through;
+
+}
