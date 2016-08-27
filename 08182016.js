@@ -1,6 +1,7 @@
 $(document).ready(function() {
-
+  var notearray = [];
   var notes = load("mynotes");
+
   if (notes) {
 
     $.each(notes, function() {
@@ -23,8 +24,9 @@ $(document).ready(function() {
           $('<li class="note col-md-4 col-md-offset-4 col">')
               .text(val)
               .appendTo('section#notecontainer>ul');
+          notearray.push(val)
           notes = query();
-          save('mynotes', notes, true);
+          save('mynotes', notearray, true);
           $('html,section').animate({scrollTop : $(document).height()}, 1100);
           console.log(localStorage);
           $('#search').val(null);
@@ -44,6 +46,10 @@ $(document).ready(function() {
   $(".note").click(function() {
 
     $(this).toggleClass("strike");
+    console.log($(this).text());
+    var val = $(this).text();
+    deletenote(val);
+    save('mynotes', notearray, true);
 
   });
 
@@ -59,10 +65,17 @@ $(document).ready(function() {
     checkForStorage(function() {
 
       if (localStorage[key]) {
+
         loaded = JSON.parse(localStorage[key]);
+
+        console.log(loaded);
+        notearray = loaded;
+        console.log(notearray);
+
       } else if (sessionStorage[key]) {
 
         loaded = JSON.parse(sessionStorage[key]);
+
       } else {
         console.warn("no storage data found for" + [ key ]);
       }
@@ -93,11 +106,18 @@ $(document).ready(function() {
     localStorage.clear();
     location.reload();
 
-  })
-})
-    // var result = $('#search').val();
-    // console.log(result);
-    // $('#search').val('');
-    //
-    // })
-    // });
+  });
+
+  function deletenote(obj) {
+    var x = notearray.indexOf(obj);
+    notearray.splice(x, 1);
+    console.log(notearray);
+  }
+});
+
+// var result = $('#search').val();
+// console.log(result);
+// $('#search').val('');
+//
+// })
+// });
