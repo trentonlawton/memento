@@ -13,7 +13,7 @@ $(document).ready(function() {
   var time = new Date();
 
   var hour = time.getHours()
-  console.log(hour);
+  console.log(curtime());
   function nightmode() {
     var nightmode;
     if (hour >= 0 && hour < 17) {
@@ -46,7 +46,12 @@ $(document).ready(function() {
                         .text(this.val)
                         .appendTo(notecontainer);
       $('<button id="delete">⊗</button>').prependTo(notecontainer);
+      $('<span class="notedetails">' + this.location + " " +
+        '<span class="date">' + this.time + '</span>' +
+        '</span>')
+          .prependTo(notecontainer);
       clickdelete(notecontainer);
+      detailsclick(notecontainer);
     });
     $('section').animate({scrollTop : $(window).height()}, 900);
   }
@@ -68,13 +73,17 @@ $(document).ready(function() {
                             .text(val)
                             .appendTo(notecontainer);
           $('<button id="delete">⊗</button>').prependTo(notecontainer);
-
+          $('<span class="notedetails">' + address + " " +
+            '<span class="date">' + curtime() + '</span>' +
+            '</span>')
+              .prependTo(notecontainer);
           $('html,section').animate({scrollTop : $(document).height()}, 1100);
           console.log(localStorage);
 
           $('#search').val(null);
 
-          clickdelete(notecontainer)
+          clickdelete(notecontainer);
+          detailsclick(notecontainer);
         } else {
           $('#search').attr('placeholder',
                             'Please input values before pressing enter')
@@ -153,14 +162,21 @@ $(document).ready(function() {
       });
     });
   };
+  function detailsclick(click) {
+    $(click).click(function() {
+      $(this)
+          .children('.notedetails')
+          .toggle('slide', {direction : 'right'}, 1000);
+    })
+  }
 
   function curtime() {
     var curtime = new Date();
-    var curHour = curtime.getHours().toString();
-    var curMin = curtime.getMinutes().toString();
-    var curDate = curtime.getMonth().toString() + curtime.getDay().toString() +
+
+    var curDate = (curtime.getMonth() + 1).toString() + '.' +
+                  curtime.getUTCDate().toString() + '.' +
                   curtime.getYear().toString();
-    return curHour + curMin + curDate
+    return curDate
   };
 
   // Note: This example requires that you consent to location sharing when
@@ -197,7 +213,6 @@ $(document).ready(function() {
 
     navigator.geolocation.getCurrentPosition(geoSuccess);
   };
-
 });
 
 // var result = $('#search').val();

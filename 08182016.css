@@ -119,3 +119,23 @@ text-align: center;
 .note{
   width: 100%;
 }
+
+.notedetails{
+position: absolute;
+display: flex;
+z-index: 10;
+color: white;
+top: 3.5em;
+margin-left: 35px;
+background-color: #646590;
+width: 100%;
+display: none;
+opacity: .9;
+
+}
+.date{
+
+  background-color: #222;
+
+  color: #fff;
+}
