@@ -18,9 +18,10 @@ $(document).ready(function() {
     var nightmode;
     if (hour >= 0 && hour < 17) {
       $('body').css({
-        'background-color' : '#fff'
+        'background-color' : '#e3e1e1'
 
       })
+      $('textarea').css({'background-color' : '##e3e1e1', 'color' : '#222'})
       $('<span id="type">.</span>').appendTo('h1')
     }
 
@@ -175,7 +176,7 @@ $(document).ready(function() {
 
     var curDate = (curtime.getMonth() + 1).toString() + '.' +
                   curtime.getUTCDate().toString() + '.' +
-                  curtime.getYear().toString();
+                  curtime.getYear().toString().substr(1, 2);
     return curDate
   };
 
