@@ -2,6 +2,31 @@ $(document).ready(function() {
   var notearray = [];
   var notes = load("mynotes");
 
+  var time = new Date();
+
+  var hour = time.getHours()
+  console.log(hour);
+  function nightmode() {
+    var nightmode;
+    if (hour >= 0 && hour < 17) {
+      $('body').css({
+        'background-color' : '#fff'
+
+      })
+      $('<span id="type">.</span>').appendTo('h1')
+    }
+
+    else {
+      $('body').css({
+        'background-color' : '#222',
+
+      });
+      $('h1').css({'color' : '#fff'})
+      $('textarea').css({'background-color' : '#222', 'color' : '#fff'})
+      $('<span id="nightmode">☾</span>').appendTo('h1')
+    }
+  }
+  nightmode();
   if (notes) {
 
     $.each(notes, function() {
@@ -11,7 +36,7 @@ $(document).ready(function() {
       var newnote = $('<li class="note col-md-4 col-md-offset-4 col">')
                         .text(this)
                         .appendTo(notecontainer);
-      $('<button id="delete">D</button>').prependTo(notecontainer);
+      $('<button id="delete">⊗</button>').prependTo(notecontainer);
       clickdelete(notecontainer);
     });
     $('section').animate({scrollTop : $(window).height()}, 900);
@@ -32,7 +57,7 @@ $(document).ready(function() {
           var newnote = $('<li class="note col-md-4 col-md-offset-4 col">')
                             .text(val)
                             .appendTo(notecontainer);
-          $('<button id="delete">D</button>').prependTo(notecontainer);
+          $('<button id="delete">⊗</button>').prependTo(notecontainer);
 
           $('html,section').animate({scrollTop : $(document).height()}, 1100);
           console.log(localStorage);
@@ -44,7 +69,7 @@ $(document).ready(function() {
           console.warn("please input value");
         }
       } else {
-        $('span').toggle().fadeIn(1000);
+        $('#type').toggle().fadeIn(1000);
         console.log($('#search').val().trim().length);
       };
 
