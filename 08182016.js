@@ -1,8 +1,9 @@
 $(document).ready(function() {
-  console.log('[VERSION]0.3 MEMENTO.IO RD|082716');
-  getcurLocation();
+  console.log('[VERSION]0.3082716 MEMENTO.IO');
+  var address;
   var notearray = [];
   var notes = load("mynotes");
+  getcurLocation();
 
   var time = new Date();
 
@@ -29,6 +30,7 @@ $(document).ready(function() {
     }
   }
   nightmode();
+
   if (notes) {
 
     $.each(notes, function() {
@@ -51,8 +53,15 @@ $(document).ready(function() {
           console.log("you pressed enter")
 
               var val = $('textarea#search').val().trim();
-          console.log(val);
-          notearray.push(val)
+          getcurLocation();
+          var newnote = {
+            value : val,
+            time : curtime(),
+            location : address
+
+          };
+          console.log(newnote);
+          notearray.push(newnote)
           save('mynotes', notearray, true);
           var notecontainer = $('<div class="notecontainer">')
                                   .appendTo('section#notecontainer>ul');
@@ -65,8 +74,7 @@ $(document).ready(function() {
           console.log(localStorage);
 
           $('#search').val(null);
-          console.log(getcurLocation());
-          console.log(curtime());
+
           clickdelete(notecontainer)
         } else {
           $('#search').attr('placeholder',
@@ -163,19 +171,22 @@ $(document).ready(function() {
 
   function getcurLocation() {
     var startPos;
+
     var geoOptions = {enableHighAccuracy : true};
     var geoSuccess = function(position) {
       startPos = position;
       var lat = startPos.coords.latitude;
       var long = startPos.coords.longitude;
+      $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?latlng=' +
+                    lat + ',' + long +
+                    '&key=AIzaSyD0kEx9LiveBojcr8gAl0CpKDUJcQl0E_o',
+                function(data) {
+                  address = data.results[0].formatted_address;
 
-      console.log(lat + ',' + long);
-      $.getJSON(
-          'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat +
-              ',' + long + '&key=AIzaSyD0kEx9LiveBojcr8gAl0CpKDUJcQl0E_o',
-          function(data) { console.log(data.results[0].formatted_address); })
+                });
 
     };
+
     var geoError = function(error) {
       console.log('Error occurred. Error code: ' + error.code);
       // error.code can be:
@@ -184,6 +195,7 @@ $(document).ready(function() {
       //   2: position unavailable (error response from location provider)
       //   3: timed out
     };
+
     navigator.geolocation.getCurrentPosition(geoSuccess);
   };
 
