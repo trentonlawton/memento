@@ -1,4 +1,6 @@
 $(document).ready(function() {
+  console.log('[VERSION]0.3 MEMENTO.IO RD|082716');
+  getcurLocation();
   var notearray = [];
   var notes = load("mynotes");
 
@@ -61,7 +63,10 @@ $(document).ready(function() {
 
           $('html,section').animate({scrollTop : $(document).height()}, 1100);
           console.log(localStorage);
+
           $('#search').val(null);
+          console.log(getcurLocation());
+          console.log(curtime());
           clickdelete(notecontainer)
         } else {
           $('#search').attr('placeholder',
@@ -138,11 +143,50 @@ $(document).ready(function() {
         save('mynotes', notearray, true);
         $(this).parent().animate({left : 3000}, 2000,
                                  function() { $(this).remove() });
-
       });
-
     });
   };
+
+  function curtime() {
+    var curtime = new Date();
+    var curHour = curtime.getHours().toString();
+    var curMin = curtime.getMinutes().toString();
+    var curDate = curtime.getMonth().toString() + curtime.getDay().toString() +
+                  curtime.getYear().toString();
+    return curHour + curMin + curDate
+  };
+
+  // Note: This example requires that you consent to location sharing when
+  // prompted by your browser. If you see the error "The Geolocation service
+  // failed.", it means you probably did not give permission for the browser to
+  // locate you.
+
+  function getcurLocation() {
+    var startPos;
+    var geoOptions = {enableHighAccuracy : true};
+    var geoSuccess = function(position) {
+      startPos = position;
+      var lat = startPos.coords.latitude;
+      var long = startPos.coords.longitude;
+
+      console.log(lat + ',' + long);
+      $.getJSON(
+          'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat +
+              ',' + long + '&key=AIzaSyD0kEx9LiveBojcr8gAl0CpKDUJcQl0E_o',
+          function(data) { console.log(data.results[0].formatted_address); })
+
+    };
+    var geoError = function(error) {
+      console.log('Error occurred. Error code: ' + error.code);
+      // error.code can be:
+      //   0: unknown error
+      //   1: permission denied
+      //   2: position unavailable (error response from location provider)
+      //   3: timed out
+    };
+    navigator.geolocation.getCurrentPosition(geoSuccess);
+  };
+
 });
 
 // var result = $('#search').val();
