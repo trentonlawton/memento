@@ -1,5 +1,9 @@
 $(document).ready(function() {
-  console.log('[VERSION]0.3082716 MEMENTO.IO');
+  console.log('[VERSION]0.3 MEMENTO.IO');
+  console.log("Build: 14d5cfca02ca94f04ae433aeac1ae03ad4929436");
+  console.log("Author: Trenton Lawton");
+  console.log("Github:http://github.com/trentonlawton/memento");
+  console.log('Date:' + curtime());
   var address;
   var notearray = [];
   var notes = load("mynotes");
@@ -12,30 +16,32 @@ $(document).ready(function() {
   }
   var time = new Date();
 
-  var hour = time.getHours()
-  console.log(curtime());
-  function nightmode() {
-    var nightmode;
-    if (hour >= 0 && hour < 17) {
-      $('body').css({
-        'background-color' : '#e3e1e1'
+  var hour =
+      time.getHours()
 
-      })
-      $('textarea').css({'background-color' : '##e3e1e1', 'color' : '#222'})
-      $('<span id="type">.</span>').appendTo('h1')
-    }
+          function
+          nightmode() {
+            var nightmode;
+            if (hour >= 0 && hour < 17) {
+              $('body').css({
+                'background-color' : '#e3e1e1'
 
-    else {
-      $('body').css({
-        'background-color' : '#222',
+              })
+              $('textarea')
+                  .css({'background-color' : '##e3e1e1', 'color' : '#222'})
+              $('<span id="type">.</span>').appendTo('h1')
+            }
 
-      });
-      $('h1').css({'color' : '#fff'})
-      $('textarea').css({'background-color' : '#222', 'color' : '#fff'})
-      $('<span id="nightmode">☾</span>').appendTo('h1')
-    }
-  }
-  nightmode();
+            else {
+              $('body').css({
+                'background-color' : '#222',
+
+              });
+              $('h1').css({'color' : '#fff'})
+              $('textarea').css({'background-color' : '#222', 'color' : '#fff'})
+              $('<span id="nightmode">☾</span>').appendTo('h1')
+            }
+          } nightmode();
 
   if (notes) {
 
@@ -90,9 +96,9 @@ $(document).ready(function() {
                             'Please input values before pressing enter')
           console.warn("please input value");
         }
+
       } else {
         $('#type').toggle().fadeIn(1000);
-        console.log($('#search').val().trim().length);
       };
 
     });
@@ -108,8 +114,10 @@ $(document).ready(function() {
 
         loaded = JSON.parse(localStorage[key]);
 
+        console.log('localStorage:');
         console.log(loaded);
         notearray = loaded;
+        console.log('notearray:');
         console.log(notearray);
 
       } else if (sessionStorage[key]) {
