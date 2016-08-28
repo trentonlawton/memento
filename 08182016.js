@@ -136,7 +136,8 @@ $(document).ready(function() {
         deletenote(val);
 
         save('mynotes', notearray, true);
-        $(this).parent().animate({left : 3000}, 2000);
+        $(this).parent().animate({left : 3000}, 2000,
+                                 function() { $(this).remove() });
 
       });
 

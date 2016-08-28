@@ -71,6 +71,8 @@ padding: 0px;
   height: 500px;
 word-wrap: break-word;
 margin: 0;
+width:100%;
+overflow-x: hidden;
 
 
 }
@@ -91,6 +93,7 @@ width: 100%;
   }
   section{
     height:33em;
+    width: 100%;
   }
 }
 #notecontainer{width: 100%;}::-webkit-scrollbar {
@@ -107,6 +110,7 @@ float: left;
 position: absolute;
 display: none;
 font-size: 1em;
+text-align: center;
 
 }
 .notecontainer{
