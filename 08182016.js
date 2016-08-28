@@ -4,7 +4,12 @@ $(document).ready(function() {
   var notearray = [];
   var notes = load("mynotes");
   getcurLocation();
-
+  function note(val) {
+    this.val = val;
+    this.time = curtime();
+    getcurLocation();
+    this.location = address;
+  }
   var time = new Date();
 
   var hour = time.getHours()
@@ -38,7 +43,7 @@ $(document).ready(function() {
       var notecontainer =
           $('<div class="notecontainer">').appendTo('section#notecontainer>ul');
       var newnote = $('<li class="note col-md-4 col-md-offset-4 col">')
-                        .text(this)
+                        .text(this.val)
                         .appendTo(notecontainer);
       $('<button id="delete">⊗</button>').prependTo(notecontainer);
       clickdelete(notecontainer);
@@ -53,13 +58,7 @@ $(document).ready(function() {
           console.log("you pressed enter")
 
               var val = $('textarea#search').val().trim();
-          getcurLocation();
-          var newnote = {
-            value : val,
-            time : curtime(),
-            location : address
-
-          };
+          var newnote = new note(val);
           console.log(newnote);
           notearray.push(newnote)
           save('mynotes', notearray, true);
